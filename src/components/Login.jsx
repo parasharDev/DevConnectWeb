@@ -10,6 +10,7 @@ const Login = () => {
   const [password, setPassword] = useState("");
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  console.log("BU",BASE_URL)
 
   const handleLogin = async () => {
     try {
