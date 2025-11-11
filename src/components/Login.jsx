@@ -8,9 +8,10 @@ import { BASE_URL } from "../utils/constants";
 const Login = () => {
   const [emailId, setEmailId] = useState("");
   const [password, setPassword] = useState("");
+  const [error, setError] = useState("");
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  console.log("BU",BASE_URL)
+  console.log("BU", BASE_URL);
 
   const handleLogin = async () => {
     try {
@@ -26,9 +27,11 @@ const Login = () => {
       dispatch(addUser(res.data));
       navigate("/");
     } catch (err) {
+      setError(err?.response?.data || 'Something went wrong!');
       console.error(err);
     }
   };
+  
   return (
     <div className="flex justify-center items-center  mt-15">
       <div className="card bg-base-300 w-96 shadow-md">
@@ -60,6 +63,7 @@ const Login = () => {
             <br />
             At least one letter, number and special symbol.
           </p>
+          <p className="text-red">{error}</p>
           <div className="card-actions justify-center">
             <button className="btn btn-outline" onClick={handleLogin}>
               Login
